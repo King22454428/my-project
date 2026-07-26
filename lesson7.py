@@ -1,7 +1,7 @@
 students = []
 
-# Add students
-while True:
+
+def add_student():
     name = input("Enter student name: ")
     course = input("Enter course: ")
     level = int(input("Enter level: "))
@@ -14,36 +14,39 @@ while True:
 
     students.append(student)
 
-    choice = input("Add another student? (yes/no): ")
+    print("Student added successfully!")
 
-    if choice.lower() == "no":
+
+def view_students():
+    if len(students) == 0:
+        print("No students found.")
+    else:
+        print("\nStudent List:")
+
+        for student in students:
+            print("----------------")
+            print("Name:", student["name"])
+            print("Course:", student["course"])
+            print("Level:", student["level"])
+
+
+while True:
+    print("\n===== Student Management System =====")
+    print("1. Add Student")
+    print("2. View Students")
+    print("3. Exit")
+
+    choice = input("Choose an option: ")
+
+    if choice == "1":
+        add_student()
+
+    elif choice == "2":
+        view_students()
+
+    elif choice == "3":
+        print("Goodbye!")
         break
 
-
-# Display all students
-print("\nStudent List:")
-
-for student in students:
-    print("----------------")
-    print("Name:", student["name"])
-    print("Course:", student["course"])
-    print("Level:", student["level"])
-
-
-# Search for a student
-print("\n--- Student Search ---")
-
-search_name = input("Enter student name to search: ")
-
-found = False
-
-for student in students:
-    if student["name"].lower() == search_name.lower():
-        print("\nStudent Found!")
-        print("Name:", student["name"])
-        print("Course:", student["course"])
-        print("Level:", student["level"])
-        found = True
-
-if found == False:
-    print("\nStudent not found.")
+    else:
+        print("Invalid choice. Try again.")
